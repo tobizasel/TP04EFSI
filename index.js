@@ -22,20 +22,22 @@ const agregar = () => {
 
         array.forEach(element => {
             const check = document.createElement("input");
-            const label = document.createElement("label")
-
+            const label = document.createElement("label");
+            const div = document.createElement("div");
             // comparar quien tiene menor fecha
 
             check.setAttribute("type", "checkbox");
             check.setAttribute("id", element.id);
+            check.classList.add("check");
+            label.classList.add("label")
             element.estado ? check.setAttribute("checked", element.estado) : ""
             check.addEventListener("click",()=> chequeado(check.id));
             label.innerText=element.nombre;
             label.setAttribute("for", element.nombre);
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-            article.appendChild(check);
-            article.appendChild(label);
+            article.appendChild(div)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            div.appendChild(check);
+            div.appendChild(label);
 
 
         });

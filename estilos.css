@@ -1,0 +1,23 @@
+#article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div{
+    padding: 4rem 3rem;
+}
+
+.check{
+    width: 4rem;
+    height: 4rem;
+
+    margin-right: 3rem;
+}
+
+.label{
+    padding: 2rem;
+    border: 2px solid black;
+    font-size: 4rem;
+    color: #aaa;
+}
