@@ -1,18 +1,20 @@
-#article{
+.article{
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3rem;
 }
 
-div{
+.proyecto{
     padding: 1rem 2rem;
     border: 2px solid grey;
     border-radius: 10px;
     margin-bottom: 2rem;
     display: flex;
-    align-items: center;
     text-transform: capitalize ;
+    display: flex;
+    align-items: center;
+    width: 80%;
 }
 
 .check{
@@ -23,7 +25,19 @@ div{
 }
 
 .label{
-    padding: 2rem;
-    font-size: 2rem;
+    padding: 0rem;
+    font-size: 1rem;
     color: #aaa;
+}
+
+#todo{
+    padding: 1rem 2rem;
+    border: 2px solid grey;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: flex;
+    text-transform: capitalize ;
+    display: flex;
+    flex-wrap:wrap ;
+    align-items: center;
 }
