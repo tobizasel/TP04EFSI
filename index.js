@@ -1,4 +1,4 @@
-const nombreTarea = document.getElementsByClassName("nombreTarea");
+const vencimiento = document.getElementsByClassName("vencimientoTarea");
 const descripcionTarea = document.getElementsByClassName("descripcionTarea");
 const article = document.getElementsByClassName("article");
 const p = document.getElementsByClassName("p");
@@ -8,17 +8,19 @@ const bodi = document.getElementById("todo");
 const proyectos = [];
 var j = 0;
 var contenido = "";
+
 const inputProyecto = document.getElementById("nombreProyecto");
+const descripcionProyecto=document.getElementById("descripcionProyecto");
 const boton3 = document.getElementById("crearProyecto");
 
 const agregarAtributo = (x, agrego) => {
   if (agrego) {
-    if(!descripcionTarea[x].value==null || !nombreTarea[x].value==null ){
+    if(!(descripcionTarea[x].value=="")){
     article[x].innerHTML = "";
     proyectos[x].articulos.push({
       id: proyectos[x].i,
-      nombre: nombreTarea[x].value,
       descripcion:descripcionTarea[x].value,
+      fechaVencimiento:vencimiento[x].value,
       estado: false,
       fechaCreacion: new Date().toLocaleString("es-ES"),
       fechaCumplimiento: "",
@@ -32,11 +34,24 @@ const agregarAtributo = (x, agrego) => {
   contenido = "";
   proyectos.forEach((e) => {
     contenido += `<div class="proyecto">
-            <h3>${proyectos[j].nombre}</h3>
-            <input type="text" class="nombreTarea" placeholder="nombre">
-            <input type="text" class="descripcionTarea" placeholder="descripcion">
+            <div class="proyecto__titulo">
+              <h3 class="proyecto__titulo-1">${proyectos[j].nombre}</h3>
+              <h3>${proyectos[j].descripcion}</h3>
+            </div>
+            <div class="proyecto__tarea">
+            <div class="proyecto__input--wrapper">
+            <input type="text" class="descripcionTarea input " placeholder="descripcion tarea">
+            </div>
+            <div class="proyecto__vencimiento">
+            <p>Vencimiento tarea (opcional)</p>
+            <input type="date" class="vencimientoTarea input">
+            </div>
+            <div class="botones">
             <button class="boton" Onclick="agregarAtributo(${j},true)" >Enviar</button>
             <button class="boton2" Onclick="masRapido(${j})">Mostrar rapido</button>
+            </div>
+            </div>
+           
         
         
             <article class="article">
@@ -57,8 +72,14 @@ const agregarAtributo = (x, agrego) => {
       label.classList.add("label");
       element.estado ? check.setAttribute("checked", element.estado) : "";
       check.setAttribute("Onclick", `chequeado(${j},${check.id})`);
-      label.innerText = element.nombre +"    "+ element.descripcion;
-      label.setAttribute("for", element.nombre);
+      console.log(element.fechaVencimiento);
+      if(isNaN(Date.parse(element.fechaVencimiento)) ||element.fechaVencimiento!=null){
+      label.innerText = element.descripcion +"    "+ element.fechaVencimiento.toString();
+      console.log("x");
+      }else{
+       label.innerText = element.descripcion;
+      }
+      label.setAttribute("for", element.descripcion);
       div.appendChild(check);
       div.appendChild(label);
       contenido += div.innerHTML;
@@ -67,7 +88,10 @@ const agregarAtributo = (x, agrego) => {
         
     <article class="article2">
         <p class="p"></p>
-    </article></div>`;
+    </article>
+    </div>
+
+    </div>`;
     j++;
   });
 
@@ -110,7 +134,7 @@ const masRapido = (x) => {
 };
 
 const CrearProyecto = () => {
-  proyectos.push({ nombre: inputProyecto.value, i: 0, articulos: [] });
+  proyectos.push({ nombre: inputProyecto.value , descripcion: descripcionProyecto.value, i: 0, articulos: [] });
   agregarAtributo(0, false);
 };
 
