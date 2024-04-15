@@ -28,7 +28,7 @@ const agregarAtributo = (x, agrego) => {
       estado: false,
       fechaCreacion: new Date().toLocaleString("es-ES"),
       fechaCumplimiento: "",
-      tiempoCumplimiento: 999999999,
+      tiempoCumplimiento: 999999999
     });
     proyectos[x].i++;
     }else{
@@ -131,22 +131,22 @@ const chequeado = (x, id) => {
 
 const masRapido = (x) => {
   const arrayTiempos = [];
-  console.log(proyectos[x].articulos);
 
   proyectos[x].articulos.forEach((e) => {
     if (e.estado) {
       const fechaCreacion = new Date(e.fechaCreacion).getTime();
       const fechaCumplimiento = new Date(e.fechaCumplimiento).getTime();
-
+      console.log(fechaCreacion);
       arrayTiempos.push(fechaCumplimiento - fechaCreacion);
       e.tiempoCumplimiento = fechaCumplimiento - fechaCreacion;
+      console.log(e.tiempoc);
     } 
   });
-
+  console.log(arrayTiempos);
   proyectos[x].articulos.forEach((element) => {
     if (Math.min(...arrayTiempos) === element.tiempoCumplimiento) {
       p[x].innerText = `el elemento mas rapido fue ${element.nombre}`;
-      console.log();
+      console.log(`el elemento mas rapido fue ${element.nombre}`);
     }
   });
 };
