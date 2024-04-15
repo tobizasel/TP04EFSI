@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -6,6 +8,13 @@
 body{
     background-color: whitesmoke;
     padding: 3rem;
+    font-family: "Noto Sans", sans-serif;
+
+}
+
+button{
+    font-family: inherit;
+    cursor: pointer;
 }
 
 .w-100{
@@ -24,20 +33,42 @@ body{
     margin-bottom: 1.5rem;
     color: #999;
 }
+
+.input-3{
+    background-color: whitesmoke;
+}
 /* 00C49A F8E16C*/
-.botonP{
-    padding: .7rem 1.2rem;
+.botones__agregar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #A1E887;
-    border: 2px solid #4B4E6D;
-    border-radius: 10px;
-    font-weight: 500;
+    border: none;
+    border-radius: 20px;
+    width: 11rem;
+    height: 3rem;
+    cursor:pointer;
 }
 
-.article{
+.botonCrear{
+    font-size: 1rem;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.tareas{
+    display: flex;
+    justify-content: center;
+    padding:.5rem 2rem;
+    text-align: center;
+}
+
+.tareas__wrapper{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:.5rem 2rem;
+    align-items: center;
+    margin-right: 3rem;
+
 }
 
 #todo{
@@ -45,8 +76,27 @@ body{
 }
 
 .proyecto{
-    border: 2px solid #6622CC;
+    border-left: 10px solid #6622CC;
+    margin-bottom: 4rem;
+    background-color: #ffffff;
 }
+
+.proyecto--100{
+    border-left: 10px solid #6622CC;
+}
+
+.proyecto--200{
+    border-left: 10px solid #5dd39e;
+}
+
+.proyecto--300{
+    border-left: 10px solid #cc3363;
+}
+
+.proyecto--400{
+    border-left: 10px solid #353535;
+}
+
 
 .proyecto__titulo{
     margin-bottom: 2rem;
@@ -63,9 +113,8 @@ body{
 .check{
     width: 2rem;
     height: 2rem;
-
-    margin-right: 3rem;
 }
+
 
 .label{
     padding: 0rem;
@@ -80,16 +129,87 @@ body{
 .proyecto__titulo{
     display: flex;
     justify-content: space-between;
-    background-color: #6622CC;
     color: #F0F4EF;
     padding: 1rem 2rem;
+    background-color: #6622CC;
+
+}
+
+.proyecto__titulo--100{
+    background-color: #6622CC;
+}
+
+.proyecto__titulo--200{
+    background-color: #5dd39e;
+}
+
+.proyecto__titulo--300{
+    background-color: #cc3363;
+}
+
+.proyecto__titulo--400{
+    background-color: #353535;
 }
 
 .proyecto__vencimiento{
-    width: 40%;
+    width: 30%;
 }
 
 .proyecto__input--wrapper{
+    width: 30%;
+}
+
+.botones{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+}
+
+.boton{
+    border-radius: 5px;
+    background-color: #6622CC;
+    color: #F0F4EF;
+    font-size: 1.1rem;
+    height: 3rem;
     width: 40%;
+}
+
+.boton--100{
+    background-color: #6622CC;
+}
+
+.boton--200{
+    border: #5dd39e solid 2px;
+    background-color: #5dd39e;
+}
+
+.boton--300{
+    border: #cc3363 solid 2px;
+    background-color: #cc3363;
+}
+
+.boton--400{
+    border: #353535 solid 2px;
+    background-color: #353353;
+}
+
+
+.mas{
+    background-color: #ffffff;
+    border-radius: 200px;
+    font-size: 1.2rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: none;
+    cursor:pointer;
+    color: #A1E887;
+    margin-right: .5rem;
+
+}
+.botonCrear{
+    cursor:pointer;
+    background-color: #A1E887;
+    border: none;
 }
 
