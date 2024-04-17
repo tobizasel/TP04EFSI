@@ -5,6 +5,10 @@ const p = document.getElementsByClassName("p");
 const boton = document.getElementsByClassName("boton");
 const boton2 = document.getElementsByClassName("boton2");
 const bodi = document.getElementById("todo");
+const botonMostrarTareas = document.getElementsByClassName("mostrarTareas")
+const botonPorFecha = document.getElementsByClassName("botonBuscarFecha")
+const buscarFecha = document.getElementsByClassName("buscarFecha");
+
 
 const proyectos = [];
 var j = 0;
@@ -26,7 +30,7 @@ const agregarAtributo = (x, agrego) => {
       descripcion:descripcionTarea[x].value,
       fechaVencimiento:vencimiento[x].value,
       estado: false,
-      fechaCreacion: new Date().toLocaleString("es-ES"),
+      fechaCreacion:  Date.now(),
       fechaCumplimiento: "",
       tiempoCumplimiento: 999999999
     });
@@ -56,11 +60,18 @@ const agregarAtributo = (x, agrego) => {
             <button class="boton boton--${index}" Onclick="agregarAtributo(${j},true)" >Enviar</button>
             <button class="boton boton--${index}" Onclick="masRapido(${j})">Mostrar rapido</button>
             </div>
+
             </div>
-           
-        
-            
-            <article class="tareas">
+
+            <div class="mostrarTareas--wrapper">
+            <button class="mostrarTareas" onClick="mostrarTareas(${j})">&#8595;</button>
+            </div>
+
+            <input type="date" class="buscarFecha">
+            <button class="botonBuscarFecha" onClick="BuscarFecha(${j})">buscar por fecha</button>
+
+
+            <article class="tareas invisible" id="tareas-${j}">
         
             `;
 
@@ -94,7 +105,7 @@ const agregarAtributo = (x, agrego) => {
        label.innerText = element.descripcion;
       }
       label.setAttribute("for", element.descripcion);
-      div.setAttribute("class", "tareas__wrapper")
+      div.setAttribute("class", `"tareas__wrapper${j}"`)
       div.appendChild(check);
       div.appendChild(label);
       div.appendChild(label2);
@@ -121,7 +132,7 @@ const chequeado = (x, id) => {
   console.log(id);
   proyectos[x].articulos.forEach((e) => {
     if (e.id == id && !e.estado) {
-      e.fechaCumplimiento = new Date().toLocaleString("es-ES");
+      e.fechaCumplimiento = Date.now();
       e.estado = true;
     } else if (e.id == id && e.estado) {
       e.estado = false;
@@ -134,19 +145,21 @@ const masRapido = (x) => {
 
   proyectos[x].articulos.forEach((e) => {
     if (e.estado) {
-      const fechaCreacion = new Date(e.fechaCreacion).getTime();
+      const fechaCreacion =new Date(e.fechaCreacion).getTime();
       const fechaCumplimiento = new Date(e.fechaCumplimiento).getTime();
-      console.log(fechaCreacion);
+      console.log(fechaCreacion+" yyy");
       arrayTiempos.push(fechaCumplimiento - fechaCreacion);
       e.tiempoCumplimiento = fechaCumplimiento - fechaCreacion;
-      console.log(e.tiempoc);
+      console.log(e.tiempoCumplimiento+" xxx");
     } 
   });
+
   console.log(arrayTiempos);
+
   proyectos[x].articulos.forEach((element) => {
     if (Math.min(...arrayTiempos) === element.tiempoCumplimiento) {
-      p[x].innerText = `el elemento mas rapido fue ${element.nombre}`;
-      console.log(`el elemento mas rapido fue ${element.nombre}`);
+      p[x].innerText = `el elemento mas rapido fue ${element.descripcion}`;
+      console.log(`el elemento mas rapido fue ${element.descripcion}`);
     }
   });
 };
@@ -156,4 +169,38 @@ const CrearProyecto = () => {
   agregarAtributo(0, false);
 };
 
+const mostrarTareas = (x) => {
+  console.log("mostrar tareas");
+  const tareardas = document.getElementById(`tareas-${x}`)
+  const tareas__wrapper = document.getElementsByClassName(`"tareas__wrapper${x}"`);
+  var i=0;
+  proyectos[x].articulos.forEach((e) => {
+    console.log(tareas__wrapper[i]);
+    tareas__wrapper[i].classList.remove("invisible")
+    i++;
+  });
+  if (tareardas.classList.contains("invisible")) {
+    tareardas.classList.replace("invisible", "visible")
+    console.log("invisible");
+  } else{
+    tareardas.classList.replace("visible", "invisible")
+    console.log("visible");
+  }
+}
+
+const BuscarFecha=(x)=>{
+  const tareas__wrapper = document.getElementsByClassName(`"tareas__wrapper${x}"`);
+  var i=0;
+  proyectos[x].articulos.forEach((e) => {
+    if(e.fechaVencimiento==buscarFecha[x].value){
+
+    }else{
+      tareas__wrapper[i].classList.add("invisible")
+    }
+    i++;
+  });
+}
+
 boton3.addEventListener("click", CrearProyecto);
+
+
